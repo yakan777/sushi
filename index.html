@@ -66,9 +66,9 @@ const container = document.getElementById("container");
 let ele=document.getElementById("bt");
 ele.addEventListener("click",function(){
 //実行
-  let count=0;
-  let timerId=setInterval(()=>{
-      count++;
+  let tunaCount=0;
+  let tunaTimer=setInterval(()=>{
+      tunaCount++;
       ctx.save();
       ctx.translate(Math.random()*cvs.width,Math.random()*cvs.height);
       ctx.rotate(Math.random()*2*Math.PI);
@@ -76,11 +76,60 @@ ele.addEventListener("click",function(){
       ctx.fillStyle="red"
       ctx.fillRect(0,0,50,40);
       ctx.restore();
-      if(count > 30){
-        clearInterval(timerId);
+      if(tunaCount > 30){
+        clearInterval(tunaTimer);
       }
   },30);
 
+    let salmonCount=0;
+  let salmonTimer=setInterval(()=>{
+      salmonCount++;
+      ctx.save();
+      ctx.translate(Math.random()*cvs.width,Math.random()*cvs.height);
+      ctx.rotate(Math.random()*2*Math.PI);
+      ctx.fillStyle="orange"
+      ctx.fillRect(0,0,60,35);
+      ctx.restore();
+      if(salmonCount > 30){
+        clearInterval(salmonTimer);
+      }
+  },30);
+
+  let ikuraCount=0;
+  let ikuraTimer=setInterval(()=>{
+      ikuraCount++;
+      ctx.save();
+      ctx.translate(Math.random()*cvs.width,Math.random()*cvs.height);
+      ctx.rotate(Math.random()*2*Math.PI);
+      ctx.fillStyle="#ff8856"
+      ctx.beginPath();
+      ctx.arc(0,0,15,0,Math.PI*2);
+      ctx.closePath();
+      ctx.fill();
+      ctx.restore();
+      if(ikuraCount > 30){
+        clearInterval(ikuraTimer);
+      }
+  },30);
+
+    let eggCount=0;
+  let eggTimer=setInterval(()=>{
+      eggCount++;
+      ctx.save();
+      ctx.translate(Math.random()*cvs.width,Math.random()*cvs.height);
+      ctx.rotate(Math.random()*2*Math.PI);
+      ctx.fillStyle="yellow"
+      ctx.beginPath();
+      ctx.moveTo(0,0);
+      ctx.lineTo(70,0);
+      ctx.lineTo(70,50);
+      ctx.closePath();
+      ctx.fill();
+      ctx.restore();
+      if(eggCount > 30){
+        clearInterval(eggTimer);
+      }
+  },30);
 
 });
 </script>
