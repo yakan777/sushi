@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>sushi</title>
+<style>
+  body {
+      background:#FFCC99;
+    }
+    #container {
+        margin: 0 auto;
+      }
+  p{
+    text-align: center;
+    color: white;
+  }
+  #btn{
+    text-align: center;
+  }
+  button{
+    width:7em;
+    height:3em;    
+  }
+    </style>
+</head>
+<body>
+<div id="text"></div>
+<p>ちらし寿司のちらし方に迷ったときはこれを参考にしよう！</p>
+<div id="btn">
+<button id="bt">ちらす</button>
+</div>
+<br>
+<div id="container">
+<canvas id="cvs"></canvas>
+</div>
+<script>
+let title=document.getElementById("text");
+title.style.color="#66CCFF";
+title.style.fontSize="30px";
+title.style.textAlign="center"
+title.textContent="全自動ちらし寿司ちらしマシーン";
+title.style.textShadow="1px 2px #C99"
+
+//canvas取得(画用紙)
+const cvs=document.getElementById('cvs');
+//2dコンテキスト取得(筆&絵の具)
+const ctx=cvs.getContext('2d');
+//キャンバスの大きさ設定
+cvs.width=700;
+cvs.height=550;
+
+//キャンバスの背景色設定
+ctx.fillStyle="#FFCC99";
+ctx.fillRect(0,0,cvs.width,cvs.height);
+const img1=new Image();
+img1.src="./images/rice.jpg";
+
+img1.onload = ()=>{
+  
+  ctx.drawImage(img1,0,0,700,550);
+}
+
+const container = document.getElementById("container");
+    container.style.width = '700px';
+
+let ele=document.getElementById("bt");
+ele.addEventListener("click",function(){
+//実行
+  let count=0;
+  let timerId=setInterval(()=>{
+      count++;
+      ctx.save();
+      ctx.translate(Math.random()*cvs.width,Math.random()*cvs.height);
+      ctx.rotate(Math.random()*2*Math.PI);
+      //let width=Math.floor(Math.random()*200)+100;
+      ctx.fillStyle="red"
+      ctx.fillRect(0,0,50,40);
+      ctx.restore();
+      if(count > 30){
+        clearInterval(timerId);
+      }
+  },30);
+
+
+});
+</script>
+</body>
+</html>
