@@ -5,13 +5,22 @@
 <title>sushi</title>
 <style>
   body {
-      background:#FFCC99;
+      /*background:#FFCC99;*/
+      background:linear-gradient(90deg,
+       #696 0%, #696 7%,
+       #fc9 7%,#fc9 10%,
+       #eee 10%,#eee 20%,
+       #fc9 20%,#fc9 80%,
+       #eee 80%,#eee 90%,
+       #fc9 90%,#fc9 93%,
+       #696 93%,#696 100%);
     }
     #container {
         margin: 0 auto;
       }
   p{
     text-align: center;
+    font-size: 20px;
     color: white;
   }
   #check{
@@ -32,7 +41,10 @@ color:#96f;
 <p>ちらし寿司のちらし方に迷ったときはこれを参考にしよう！</p>
 <div id="check">
 <label><input type="checkbox" id="check1">マグロ</label>
-<label><input type="checkbox" id="check2">朝食</label>
+<label><input type="checkbox" id="check2">サーモン</label>
+<label><input type="checkbox" id="check3">イクラ</label>
+<label><input type="checkbox" id="check4">玉子</label>
+<label><input type="checkbox" id="check5">きゅうり</label>
 </div>
 <div id="btn">
 <button id="bt">ちらす</button>
@@ -50,21 +62,22 @@ title.style.fontSize="30px";
 title.style.textAlign="center"
 title.textContent="全自動ちらし寿司ちらしマシーン";
 title.style.textShadow="1px 2px #C99";
-//title.style.display ="inline-block";
-title.style.border="5px solid #fff00f";
+title.style.border="5px solid #f36";
 title.style.borderRadius="10px";
+title.style.borderImage="linear-gradient(to right, #f36 0%, yellow 100%)";
+title.style.borderImageSlice= "1";
 title.style.padding="0 10px";
 title.style.backgroundColor="#9fc";
 
-//canvas取得(画用紙)
+//canvas取得
 const cvs=document.getElementById('cvs');
-//2dコンテキスト取得(筆&絵の具)
+//2dコンテキスト取得
 const ctx=cvs.getContext('2d');
 //キャンバスの大きさ設定
 cvs.width=700;
 cvs.height=550;
 
-//キャンバスの背景色設定
+//背景画像
 ctx.fillStyle="#FFCC99";
 ctx.fillRect(0,0,cvs.width,cvs.height);
 const img1=new Image();
@@ -76,11 +89,17 @@ img1.onload = ()=>{
 }
 
 const container = document.getElementById("container");
-    container.style.width = '700px';
-
+container.style.width = '700px';
+let tunaCheck = document.getElementById('check1');
+let salmonCheck = document.getElementById('check2');
+let ikuraCheck = document.getElementById('check3');
+let eggCheck = document.getElementById('check4');
+let cucumberCheck = document.getElementById('check5');
 let ele=document.getElementById("bt");
 ele.addEventListener("click",function(){
-//実行
+
+
+  if (tunaCheck.checked){
   let tunaCount=0;
   let tunaTimer=setInterval(()=>{
       tunaCount++;
@@ -98,8 +117,10 @@ ele.addEventListener("click",function(){
         clearInterval(tunaTimer);
       }
   },30);
+  }
 
-    let salmonCount=0;
+  if (salmonCheck.checked){
+  let salmonCount=0;
   let salmonTimer=setInterval(()=>{
       salmonCount++;
       ctx.save();
@@ -115,7 +136,9 @@ ele.addEventListener("click",function(){
         clearInterval(salmonTimer);
       }
   },30);
+}
 
+  if (ikuraCheck.checked){
   let ikuraCount=0;
   let ikuraTimer=setInterval(()=>{
       ikuraCount++;
@@ -135,8 +158,10 @@ ele.addEventListener("click",function(){
         clearInterval(ikuraTimer);
       }
   },30);
+  }
 
-    let eggCount=0;
+  if (eggCheck.checked){
+  let eggCount=0;
   let eggTimer=setInterval(()=>{
       eggCount++;
       ctx.save();
@@ -161,8 +186,10 @@ ele.addEventListener("click",function(){
         clearInterval(eggTimer);
       }
   },30);
+  }
 
-    let cucumberCount=0;
+  if (cucumberCheck.checked){
+  let cucumberCount=0;
   let cucumberTimer=setInterval(()=>{
       cucumberCount++;
       ctx.save();
@@ -182,7 +209,7 @@ ele.addEventListener("click",function(){
         clearInterval(cucumberTimer);
       }
   },30);
-
+  }
 });
 </script>
 </body>
