@@ -14,6 +14,10 @@
     text-align: center;
     color: white;
   }
+  #check{
+    text-align: center;
+color:#96f;
+  }
   #btn{
     text-align: center;
   }
@@ -26,6 +30,10 @@
 <body>
 <div id="text"></div>
 <p>ちらし寿司のちらし方に迷ったときはこれを参考にしよう！</p>
+<div id="check">
+<label><input type="checkbox" id="check1">マグロ</label>
+<label><input type="checkbox" id="check2">朝食</label>
+</div>
 <div id="btn">
 <button id="bt">ちらす</button>
 </div>
@@ -35,11 +43,18 @@
 </div>
 <script>
 let title=document.getElementById("text");
+title.style.width="500px";
+title.style.margin="0 auto 20px";
 title.style.color="#66CCFF";
 title.style.fontSize="30px";
 title.style.textAlign="center"
 title.textContent="全自動ちらし寿司ちらしマシーン";
-title.style.textShadow="1px 2px #C99"
+title.style.textShadow="1px 2px #C99";
+//title.style.display ="inline-block";
+title.style.border="5px solid #fff00f";
+title.style.borderRadius="10px";
+title.style.padding="0 10px";
+title.style.backgroundColor="#9fc";
 
 //canvas取得(画用紙)
 const cvs=document.getElementById('cvs');
@@ -72,8 +87,11 @@ ele.addEventListener("click",function(){
       ctx.save();
       ctx.translate(Math.random()*cvs.width,Math.random()*cvs.height);
       ctx.rotate(Math.random()*2*Math.PI);
-      //let width=Math.floor(Math.random()*200)+100;
-      ctx.fillStyle="red"
+      let grd = ctx.createLinearGradient(0, 0, 50, 40);
+      grd.addColorStop(0.0, "#f99");
+      grd.addColorStop(0.5, "red");
+      grd.addColorStop(1.0, "#930");
+      ctx.fillStyle=grd;
       ctx.fillRect(0,0,50,40);
       ctx.restore();
       if(tunaCount > 30){
@@ -87,7 +105,10 @@ ele.addEventListener("click",function(){
       ctx.save();
       ctx.translate(Math.random()*cvs.width,Math.random()*cvs.height);
       ctx.rotate(Math.random()*2*Math.PI);
-      ctx.fillStyle="orange"
+      let grd = ctx.createLinearGradient(0, 0, 60, 35);
+      grd.addColorStop(0, "orange");
+      grd.addColorStop(1, "white");
+      ctx.fillStyle=grd;
       ctx.fillRect(0,0,60,35);
       ctx.restore();
       if(salmonCount > 30){
@@ -101,7 +122,10 @@ ele.addEventListener("click",function(){
       ctx.save();
       ctx.translate(Math.random()*cvs.width,Math.random()*cvs.height);
       ctx.rotate(Math.random()*2*Math.PI);
-      ctx.fillStyle="#ff8856"
+      let grd = ctx.createLinearGradient(0, 0, 15, 15);
+      grd.addColorStop(0, "#ff8856");
+      grd.addColorStop(1, "white");
+      ctx.fillStyle=grd;
       ctx.beginPath();
       ctx.arc(0,0,15,0,Math.PI*2);
       ctx.closePath();
@@ -118,16 +142,44 @@ ele.addEventListener("click",function(){
       ctx.save();
       ctx.translate(Math.random()*cvs.width,Math.random()*cvs.height);
       ctx.rotate(Math.random()*2*Math.PI);
-      ctx.fillStyle="yellow"
+      let grd = ctx.createLinearGradient(0, 0, 70, 50);
+      grd.addColorStop(0.0, "yellow");
+      grd.addColorStop(0.5, "white");
+      grd.addColorStop(1.0, "yellow");
+      ctx.fillStyle=grd;
       ctx.beginPath();
       ctx.moveTo(0,0);
       ctx.lineTo(70,0);
       ctx.lineTo(70,50);
       ctx.closePath();
       ctx.fill();
+      ctx.strokeStyle="yellow"
+       ctx.lineCap="round"
+      ctx.stroke();
       ctx.restore();
       if(eggCount > 30){
         clearInterval(eggTimer);
+      }
+  },30);
+
+    let cucumberCount=0;
+  let cucumberTimer=setInterval(()=>{
+      cucumberCount++;
+      ctx.save();
+      ctx.translate(Math.random()*cvs.width,Math.random()*cvs.height);
+      ctx.rotate(Math.random()*2*Math.PI);
+      let grd = ctx.createLinearGradient(0, 0, 60, 10);
+      ctx.beginPath();
+      ctx.arc(0,0,30,0,Math.PI);
+        grd.addColorStop(0.0 , "#cfc");
+        grd.addColorStop(0.5 , "#6c6");
+        grd.addColorStop(1.0 , "#090");
+        ctx.fillStyle=grd;
+      ctx.closePath();
+      ctx.fill();
+      ctx.restore();
+      if(cucumberCount > 30){
+        clearInterval(cucumberTimer);
       }
   },30);
 
